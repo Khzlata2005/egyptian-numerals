@@ -1,38 +1,57 @@
-const postsContainer =
+import likes from './actions.js';
+
+const container =
   document.getElementById(
     'postsContainer',
   );
 
-export default function renderArticles(
-  articlesArray,
-) {
-  postsContainer.innerHTML = '';
-  if (articlesArray.length === 0) {
-    postsContainer.innerHTML =
-      '<p class="no-results">' +
-      'Ничего не найдено 😢</p>';
+export default function render(items) {
+  container.innerHTML = '';
+  if (items.length === 0) {
+    container.innerHTML =
+      '<p>Ничего не найдено</p>';
     return;
   }
-  articlesArray.forEach((article) => {
-    const articleHtml = `
-      <article>
+  items.forEach((item) => {
+    const { id, title, text } = item;
+    const { date, isoDate, tags } =
+      item;
+    const count = likes.get(id) || 0;
+    const html = `
+      <article data-id="${id}">
         <header>
-          <h3>${article.title}</h3>
+          <h3>${title}</h3>
           <p>Опубликовано:
-            <time
-          datetime="${article.isoDate}"
-            >${article.date}</time>
+            <time datetime="${isoDate}">
+              ${date}
+            </time>
           </p>
         </header>
-        <p>${article.text}</p>
+        <p id="text-${id}"
+          class="article-text short">
+          ${text}
+        </p>
+        <button class="read-more-btn"
+          aria-controls="text-${id}"
+          aria-expanded="false">
+          Читать далее
+        </button>
         <footer>
-          <p>Теги: ${article.tags}</p>
+          <p>Теги: ${tags}</p>
+          <button class="like-btn"
+          ${count ? 'data-liked' : ''}>
+            Лайк ·
+            <span class="like-count"
+              aria-live="polite">
+              ${count}
+            </span>
+          </button>
         </footer>
       </article>
     `;
-    postsContainer.insertAdjacentHTML(
+    container.insertAdjacentHTML(
       'beforeend',
-      articleHtml,
+      html,
     );
   });
 }

@@ -40,8 +40,9 @@
             <button
               class="theme-btn"
               id="themeBtn"
+              aria-pressed="false"
             >
-              🌙 Темная тема
+              Тёмная тема
             </button>
           </li>
         </ul>
@@ -53,11 +54,14 @@
           Египетская система счисления
         </h2>
         <div class="search-container">
+          <label for="searchInput">
+            Поиск по статьям
+          </label>
           <input
             type="search"
             id="searchInput"
             aria-label="Поиск статей"
-            placeholder="Поиск..."
+            placeholder="Поиск"
           />
         </div>
         <div
@@ -77,6 +81,24 @@
           Запишите египетскими знаками
           число 1234.
         </p>
+        <dl class="number-key">
+          <div>
+            <dt>1</dt>
+            <dd>Палочка</dd>
+          </div>
+          <div>
+            <dt>10</dt>
+            <dd>Дуга</dd>
+          </div>
+          <div>
+            <dt>100</dt>
+            <dd>Верёвка</dd>
+          </div>
+          <div>
+            <dt>1000</dt>
+            <dd>Лотос</dd>
+          </div>
+        </dl>
       </aside>
     </main>
     <footer>

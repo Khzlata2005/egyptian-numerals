@@ -1,23 +1,16 @@
-const themeButton =
+const button =
   document.getElementById('themeBtn');
 
-themeButton.addEventListener(
-  'click',
-  function () {
+button.addEventListener('click', () => {
+  const dark =
     document.body.classList.toggle(
       'dark-theme',
     );
-
-    if (
-      document.body.classList.contains(
-        'dark-theme',
-      )
-    ) {
-      themeButton.textContent =
-        '☀ Светлая тема';
-    } else {
-      themeButton.textContent =
-        '🌙 Темная тема';
-    }
-  },
-);
+  button.textContent = dark
+    ? 'Светлая тема'
+    : 'Тёмная тема';
+  button.setAttribute(
+    'aria-pressed',
+    String(dark),
+  );
+});
